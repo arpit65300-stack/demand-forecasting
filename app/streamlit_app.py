@@ -7,6 +7,8 @@ st.set_page_config(page_title="Demand Forecasting", page_icon="📦", layout="wi
 st.title("📦 E-Commerce Demand Forecasting")
 st.markdown("Weekly demand forecasts for Olist product categories using XGBoost")
 
+API_URL = "https://demand-forecasting-9sgs.onrender.com"
+
 st.sidebar.header("Forecast Settings")
 category = st.sidebar.selectbox(
     "Product Category",
@@ -19,7 +21,7 @@ if st.sidebar.button("Generate Forecast", type="primary"):
     with st.spinner("Fetching forecast..."):
         try:
             response = requests.post(
-                "http://127.0.0.1:8000/forecast",
+                f"{API_URL}/forecast",
                 json={"category": category, "weeks_ahead": weeks_ahead}
             )
             data = response.json()
@@ -56,7 +58,6 @@ if st.sidebar.button("Generate Forecast", type="primary"):
 
         except Exception as e:
             st.error(f"Error connecting to API: {e}")
-            st.info("Make sure the FastAPI server is running on port 8000")
 else:
     st.info("Select a category and click Generate Forecast to get started")
 
