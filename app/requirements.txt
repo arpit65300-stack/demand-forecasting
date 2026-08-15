@@ -6,3 +6,6 @@ xgboost
 scikit-learn
 joblib
 pydantic
+plotly
+requests
+streamlit
