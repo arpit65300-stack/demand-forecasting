@@ -1,0 +1,1 @@
+open('streamlit_app.py','w').write(open('write_content.txt').read())
